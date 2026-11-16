@@ -4,7 +4,7 @@ This repository contains SysML v2 example models of selected subsystems of the 9
 
 https://9crc.com/
 
-![[9C_02.png]]
 
+![9C_02](/images/9C_02.png)
 
 
