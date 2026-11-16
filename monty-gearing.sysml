@@ -25,23 +25,39 @@ package rock{
  part def AxleAssembly  {
   attribute overallRatio : Real = transmission.transmissionRatio * portaKnuckle.transmissionStage.gearRatio;
   part housing;
-  part transmission{
-   part firstTransmissionStage : TransmissionStage{
-    attribute :>> inputGear.toothCount = 12;
-    attribute :>> outputGear.toothCount = 42;
-   }
-   part secondTransmissionStage : TransmissionStage{
-    attribute :>> inputGear.toothCount = 12;
-    attribute :>> outputGear.toothCount = 42;
-   }
-   attribute transmissionRatio :Real  = firstTransmissionStage.gearRatio*secondTransmissionStage.gearRatio;
+  part transmission {
+    part primaryTransmissionStage : TransmissionStage {
+        part :>> inputGear {
+            attribute :>> toothCount = 13;
+        }
+        part :>> outputGear {
+            attribute :>> toothCount = 37;
+        }
+    }
+    part secondaryTransmissionStage : TransmissionStage {
+        part :>> inputGear {
+            attribute :>> toothCount = 15;
+        }
+        part :>> outputGear {
+            attribute :>> toothCount = 46;
+        }
+    }
+    part thirdTransmissionStage : TransmissionStage {
+        part :>> inputGear {
+            attribute :>> toothCount = 15;
+        }
+        part :>> outputGear {
+            attribute :>> toothCount = 46;
+        }
+    }
+    attribute transmissionRatio : $::ScalarValues::Real = primaryTransmissionStage.gearRatio * secondaryTransmissionStage.gearRatio * thirdTransmissionStage.gearRatio;
   }
   
   part portaKnuckle{
    attribute side;
    part transmissionStage : TransmissionStage{
-    attribute :>> inputGear.toothCount = 20;
-    attribute :>> outputGear.toothCount = 40;
+    attribute :>> inputGear.toothCount = 15;
+    attribute :>> outputGear.toothCount = 37;
    }
   }
   part leftportaKnuckle :> portaKnuckle{
